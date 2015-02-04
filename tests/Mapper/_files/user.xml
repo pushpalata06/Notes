@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="user">
+        <column>id</column>
+        <column>firstName</column>
+        <column>lastName</column>
+        <column>color</column>
+        <row>
+            <value>1</value>
+            <value>anusha</value>
+            <value>hiremath</value>
+            <value>blue</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>gauri</value>
+            <value>bhapkar</value>
+            <value>white</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Tony</value>
+            <value>Stark</value>
+            <value>grey</value>
+        </row>
+    </table>
+</dataset>
