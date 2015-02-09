@@ -7,20 +7,20 @@
         <column>color</column>
         <row>
             <value>1</value>
-            <value>anusha</value>
-            <value>hiremath</value>
-            <value>blue</value>
+            <value>Pushpa</value>
+            <value>Marade</value>
+            <value>White</value>
         </row>
         <row>
             <value>2</value>
-            <value>gauri</value>
-            <value>bhapkar</value>
-            <value>white</value>
+            <value>Gauri</value>
+            <value>Bhapkar</value>
+            <value>Blue</value>
         </row>
         <row>
             <value>3</value>
-            <value>Tony</value>
-            <value>Stark</value>
+            <value>Anusha</value>
+            <value>Hiremath</value>
             <value>grey</value>
         </row>
     </table>

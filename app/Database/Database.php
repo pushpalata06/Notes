@@ -1,27 +1,55 @@
 <?php
 namespace Notes\Database;
 
+use Notes\Config\Config as config;
 
-class Database 
+class Database
 {
+    public $conn;
+    
     public function getConnection()
     {
-        
         try {
-            $pdo = new \PDO('mysql:host=DB_SERVER;dbname=DB_NAME', DB_USER, DB_PASSWORD);
-            $this->conn = $this->createDefaultDBConnection($pdo, DB_NAME);
+            $connection = new config();
+            $connectHostString = "mysql:host=$connection->hostName;dbname=$connection->dbName";
+            $this->conn = new \PDO($connectHostString, $connection->userName, $connection->password);
             return $this->conn;
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
-    public function get($query)
+    public function get($sql)
     {
-            $stmt   = $conn->prepare($query);
-            $stmt->execute(array(
-                ':id' => $user->id
-            ));
-            $resultset = $stmt->fetch(\PDO::FETCH_ASSOC);
-            return $resultset;
+        $stmt = $this->getConnection()->prepare($sql);
+        
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function put($sql)
+    {
+        
+        $conn   = $this->getConnection();
+        $result = $conn->prepare($sql);
+        $result->execute();
+        $lastInsertid = $conn->lastInsertId();
+        return $lastInsertid;
+    }
+    
+    public function delete($sql)
+    {
+        $conn   = $this->getConnection();
+        $result = $conn->prepare($sql);
+        $result->execute();
+        return "Record deleted successfully";
+        
+    }
+    
+    public function update($sql)
+    {
+        $conn = $this->getConnection();
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return "Record updated successfully";
     }
 }
