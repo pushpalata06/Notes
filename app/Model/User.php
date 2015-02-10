@@ -7,4 +7,5 @@ class User
     public $firstName;
     public $lastName;
     public $color;
+    public $isDelete;
 }

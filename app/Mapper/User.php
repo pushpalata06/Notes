@@ -9,13 +9,13 @@ class User
 {
     public function delete($id)
     {
-        
+        $isDelete = 0;
         $user     = new UserModel();
         $user->id = $id;
-        
+        $user->isDelete = $isDelete;
         $db  = new Database();
-        $sql = "delete from user where id=$id";
-        $resultset = $db->delete($sql);
+        $sql = "UPDATE user SET isDelete=:isDelete WHERE id=:id";
+        $resultset = $db->delete($id, $isDelete, $sql);
         return $resultset;
     }
     public function create($input)
@@ -23,42 +23,40 @@ class User
         
         $user            = new UserModel();
         $user->firstName = $input['firstName'];
-        
         $user->lastName = $input['lastName'];
         $user->color    = $input['color'];
-        
-        $sql       = "INSERT INTO user (firstName,lastName,color) VALUES 
-                        ('$user->firstName', '$user->lastName', '$user->color')";
-        $db        = new Database();
-        $resultset = $db->put($sql);
+        $sql            = "INSERT INTO user (firstName, lastName, color) VALUES (:firstName, :lastName, :color)";
+        $db             = new Database();
+        $resultset      = $db->put($input, $sql);
         return $resultset;
     }
     
-    
+   
     public function read($id)
     {
         $user     = new UserModel();
         $user->id = $id;
         
-        $sql = "SELECT id, firstName, lastName,color FROM user where id=$id";
+        $sql = "SELECT id, firstName, lastName,color FROM user where id=:id";
         
         $db              = new Database();
-        $resultset       = $db->get($sql);
+        $resultset       = $db->get($id, $sql);
         $user->firstName = $resultset['firstName'];
         $user->lastName  = $resultset['lastName'];
         $user->color     = $resultset['color'];
         
         return $user;
     }
-
+ 
     public function update($id)
     {
         $user            = new UserModel();
         $user->id        = $id;
         $updateColorName = "Grey";
-        $sql             = "UPDATE user SET color='$updateColorName' WHERE id=$id";
+        $user->color        = $updateColorName;
+        $sql             = "UPDATE user SET color=:color WHERE id=:id";
         $db              = new Database();
-        $resultset       = $db->update($sql);
+        $resultset       = $db->update($updateColorName,$id, $sql);
         return $resultset;  
     }
 }
