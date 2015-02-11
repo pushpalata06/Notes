@@ -22,16 +22,23 @@
         </row>
         <row>
             <value>3</value>
-            <value>Anusha</value>
-            <value>Hiremath</value>
-            <value>grey</value>
+            <value>Neha</value>
+            <value>Sangore</value>
+            <value>Green</value>
             <value>1</value>
         </row>
         <row>
             <value>4</value>
-            <value>Neha</value>
-            <value>Sangore</value>
-            <value>Green</value>
+            <value>Poo</value>
+            <value>Bhoye</value>
+            <value>Black</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>Kirti</value>
+            <value>Bhoye</value>
+            <value>Yellow</value>
             <value>1</value>
         </row>
     </table>

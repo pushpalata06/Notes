@@ -53,10 +53,12 @@ class User
         $user            = new UserModel();
         $user->id        = $id;
         $updateColorName = "Grey";
-        $user->color        = $updateColorName;
+        $user->color     = $updateColorName;
         $sql             = "UPDATE user SET color=:color WHERE id=:id";
         $db              = new Database();
-        $resultset       = $db->update($updateColorName,$id, $sql);
+        $resultset       = $db->update($updateColorName, $id, $sql);
+        print_r($resultset);
+        $user->color     = $resultset['color'];
         return $resultset;  
     }
 }

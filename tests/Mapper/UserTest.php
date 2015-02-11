@@ -30,40 +30,26 @@ class UserTest extends \PHPUnit_Extensions_Database_TestCase
         $user       = $userMapper->read('1');
         $this->assertEquals('Pushpa', $user->firstName);
     }
-    
+    public function testCheckRowCount()
+    {
+        $this->assertEquals(4, $this->getConnection()->getRowCount('user'));
+    }
+
     public function testAddEntry()
     {
         $input      = array(
-            'firstName' => 'kirti',
+            'firstName' => 'Kirti',
             'lastName' => 'Bhoye',
             'color' => 'Yellow'
         );
         $userMapper = new UserMapper();
         $user = $userMapper->create($input);
-        $this->assertEquals(5, $user);
-    }
-    
-    
-    public function testCanReadAllUsers()
-    {
-        $queryTable    = $this->getConnection()->createQueryTable('user', 'select * from user');
-        $expectedTable = $this->createXMLDataSet(dirname(__FILE__) . '/_files/user.xml')->getTable("user");
+        $queryTable    = $this->getConnection()->createQueryTable('user', 'select id, firstName, lastName, color, isDelete from user');
+        $expectedTable = $this->createXMLDataSet(dirname(__FILE__) . '/_files/user_after_insert.xml')->getTable("user");
         $this->assertTablesEqual($expectedTable, $queryTable);
     }
-    
-    public function testDeleteEntry()
-    {
-        
-        $userMapper = new UserMapper();
-        $user = $userMapper->delete('2');
-        //$this->assertEquals("Record deleted successfully", $userMapper->delete('2'));
-        $queryTable    = $this->getConnection()->createQueryTable('user', 'select * from user');
-        $expectedTable = $this->createXMLDataSet(dirname(__FILE__) . '/_files/after_user_delete.xml')->getTable("user");
-        $this->assertTablesEqual($expectedTable, $queryTable);
-        
-    }
-    
-    
+
+
     public function testUpdateEntry()
     {
         $userMapper = new UserMapper();
@@ -74,8 +60,22 @@ class UserTest extends \PHPUnit_Extensions_Database_TestCase
         
     }
     
-    public function testCheckRowCount()
+    
+    
+    public function testCanReadAllUsers()
     {
-        $this->assertEquals(4, $this->getConnection()->getRowCount('user'));
+        $queryTable    = $this->getConnection()->createQueryTable('user', 'select * from user');
+        $expectedTable = $this->createXMLDataSet(dirname(__FILE__) . '/_files/user.xml')->getTable("user");
+        $this->assertTablesEqual($expectedTable, $queryTable);
+    }
+    public function testDeleteEntry()
+    {
+        
+        $userMapper = new UserMapper();
+        $user = $userMapper->delete('2');
+        $queryTable    = $this->getConnection()->createQueryTable('user', 'select * from user');
+        $expectedTable = $this->createXMLDataSet(dirname(__FILE__) . '/_files/after_user_delete.xml')->getTable("user");
+        $this->assertTablesEqual($expectedTable, $queryTable);
+        
     }
 }

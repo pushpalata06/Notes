@@ -32,7 +32,6 @@ class Database
         $result = $conn->prepare($sql);
         $result->execute($input);
         $lastInsertid = $conn->lastInsertId();
-        echo $lastInsertid;
         return $lastInsertid;
     }
     
@@ -40,7 +39,7 @@ class Database
     {
         $conn   = $this->getConnection();
         $result = $conn->prepare($sql);
-        $result->execute(array(':id' => $id, ':isDelete'=> $isDelete));
+        $result->execute(array(':id' => $id, ':isDelete' => $isDelete));
         return "Record deleted successfully";
         
     }
@@ -49,7 +48,8 @@ class Database
     {
         $conn = $this->getConnection();
         $result = $conn->prepare($sql);
-        $delete = $result->execute(array(':id'=> $id, ':color' => $updateColorName));
-        return $delete;
+        $result->execute(array(':id'=> $id, ':color' => $updateColorName));
+        $result = $result->fetch(\PDO::FETCH_ASSOC);
+        return $result;
     }
 }
