@@ -9,13 +9,13 @@ class User
 {
     public function delete($id)
     {
-        $isDelete = 0;
-        $user     = new UserModel();
-        $user->id = $id;
+        $isDelete       = 0;
+        $user           = new UserModel();
+        $user->id       = $id;
         $user->isDelete = $isDelete;
-        $db  = new Database();
-        $sql = "UPDATE user SET isDelete=:isDelete WHERE id=:id";
-        $resultset = $db->delete($id, $isDelete, $sql);
+        $db             = new Database();
+        $sql            = "UPDATE user SET isDelete=:isDelete WHERE id=:id";
+        $resultset      = $db->delete($id, $isDelete, $sql);
         return $resultset;
     }
     public function create($input)
@@ -23,15 +23,15 @@ class User
         
         $user            = new UserModel();
         $user->firstName = $input['firstName'];
-        $user->lastName = $input['lastName'];
-        $user->color    = $input['color'];
-        $sql            = "INSERT INTO user (firstName, lastName, color) VALUES (:firstName, :lastName, :color)";
-        $db             = new Database();
-        $resultset      = $db->put($input, $sql);
+        $user->lastName  = $input['lastName'];
+        $user->color     = $input['color'];
+        $sql             = "INSERT INTO user (firstName, lastName, color) VALUES (:firstName, :lastName, :color)";
+        $db              = new Database();
+        $resultset       = $db->put($input, $sql);
         return $resultset;
     }
     
-   
+    
     public function read($id)
     {
         $user     = new UserModel();
@@ -47,7 +47,7 @@ class User
         
         return $user;
     }
- 
+    
     public function update($id)
     {
         $user            = new UserModel();
@@ -58,7 +58,7 @@ class User
         $db              = new Database();
         $resultset       = $db->update($updateColorName, $id, $sql);
         print_r($resultset);
-        $user->color     = $resultset['color'];
-        return $resultset;  
+        $user->color = $resultset['color'];
+        return $resultset;
     }
 }

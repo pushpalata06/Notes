@@ -4,7 +4,7 @@ namespace Notes\Config;
 class Config
 {
     public $hostName = "localhost";
-    public $userName = "root";
-    public $password = "Dbtest123";
-    public $dbName = "notes";
+    public $userName = "notes_developer";
+    public $password = "test123";
+    public $dbName = "notes_pushpa";
 }

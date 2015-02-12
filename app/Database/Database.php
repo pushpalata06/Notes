@@ -10,11 +10,12 @@ class Database
     public function getConnection()
     {
         try {
-            $config = new Config();
+            $config            = new Config();
             $connectHostString = "mysql:host=$config->hostName;dbname=$config->dbName";
-            $this->conn = new \PDO($connectHostString, $config->userName, $config->password);
+            $this->conn        = new \PDO($connectHostString, $config->userName, $config->password);
             return $this->conn;
-        } catch (\PDOException $e) {
+        }
+        catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
@@ -22,7 +23,9 @@ class Database
     {
         $stmt = $this->getConnection()->prepare($sql);
         
-        $stmt->execute(array(':id'=> $id));
+        $stmt->execute(array(
+            ':id' => $id
+        ));
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
         return $result;
     }
@@ -39,16 +42,22 @@ class Database
     {
         $conn   = $this->getConnection();
         $result = $conn->prepare($sql);
-        $result->execute(array(':id' => $id, ':isDelete' => $isDelete));
+        $result->execute(array(
+            ':id' => $id,
+            ':isDelete' => $isDelete
+        ));
         return "Record deleted successfully";
         
     }
     
     public function update($updateColorName, $id, $sql)
     {
-        $conn = $this->getConnection();
+        $conn   = $this->getConnection();
         $result = $conn->prepare($sql);
-        $result->execute(array(':id'=> $id, ':color' => $updateColorName));
+        $result->execute(array(
+            ':id' => $id,
+            ':color' => $updateColorName
+        ));
         $result = $result->fetch(\PDO::FETCH_ASSOC);
         return $result;
     }
