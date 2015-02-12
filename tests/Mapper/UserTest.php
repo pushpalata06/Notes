@@ -11,7 +11,7 @@ class UserTest extends \PHPUnit_Extensions_Database_TestCase
     {
         try {
             $connectHostString = "mysql:host=localhost;dbname=notes_pushpa";
-            $pdo               = new \PDO($connectHostString, "notes_developer", "test123");
+            $pdo               = new \PDO($connectHostString, "developer", "test123");
             return $this->createDefaultDBConnection($pdo, "notes_pushpa");
             
         }
