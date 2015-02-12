@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="user">
+        <column>id</column>
+        <column>firstName</column>
+        <column>lastName</column>
+        <column>color</column>
+        <column>isDelete</column>
+        <row>
+            <value>1</value>
+            <value>Pushpa</value>
+            <value>Marade</value>
+            <value>White</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>2</value>
+            <value>Gauri</value>
+            <value>Bhapkar</value>
+            <value>Blue</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>3</value>
+            <value>Neha</value>
+            <value>Sangore</value>
+            <value>Green</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>4</value>
+            <value>Poo</value>
+            <value>Bhoye</value>
+            <value>Black</value>
+            <value>1</value>
+        </row>
+        <row>
+            <value>5</value>
+            <value>Kirti</value>
+            <value>Bhoye</value>
+            <value>Yellow</value>
+            <value>1</value>
+        </row>
+    </table>
+</dataset>
