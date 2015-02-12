@@ -65,6 +65,7 @@
  </target>
 
  <target name="phploc" description="Measure project size using PHPLOC">
+  <chmod file="${basedir}/build/tools/phploc.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phploc.phar">
    <arg value="--count-tests" />
    <arg path="${basedir}/app" />
@@ -73,6 +74,7 @@
  </target>
 
  <target name="phploc-ci" depends="prepare" description="Measure project size using PHPLOC and log result in CSV and XML format">
+  <chmod file="${basedir}/build/tools/phploc.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phploc.phar">
    <arg value="--count-tests" />
    <arg value="--log-csv" />
@@ -85,6 +87,7 @@
  </target>
 
  <target name="pdepend" depends="prepare" description="Calculate software metrics using PHP_Depend">
+  <chmod file="${basedir}/build/tools/pdepend.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/pdepend.phar">
    <arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
    <arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
@@ -94,6 +97,7 @@
  </target>
 
  <target name="phpmd" description="Perform project mess detection using PHPMD and print result in text format">
+  <chmod file="${basedir}/build/tools/phpmd.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpmd.phar">
    <arg path="${basedir}/app" />
    <arg value="text" />
@@ -102,6 +106,7 @@
  </target>
 
  <target name="phpmd-ci" depends="prepare" description="Perform project mess detection using PHPMD and log result in XML format">
+  <chmod file="${basedir}/build/tools/phpmd.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpmd.phar">
    <arg path="${basedir}/app" />
    <arg value="xml" />
@@ -112,6 +117,7 @@
  </target>
 
  <target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer and print result in text format">
+  <chmod file="${basedir}/build/tools/phpcs.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpcs.phar">
    <arg value="--standard=PSR2" />
    <arg value="--extensions=php" />
@@ -122,6 +128,7 @@
  </target>
 
  <target name="phpcs-ci" depends="prepare" description="Find coding standard violations using PHP_CodeSniffer and log result in XML format">
+  <chmod file="${basedir}/build/tools/phpcs.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpcs.phar" output="/dev/null">
    <arg value="--report=checkstyle" />
    <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
@@ -133,12 +140,14 @@
  </target>
 
  <target name="phpcpd" description="Find duplicate code using PHPCPD">
+  <chmod file="${basedir}/build/tools/phpcpd.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpcpd.phar">
    <arg path="${basedir}/app" />
   </exec>
  </target>
 
  <target name="phpcpd-ci" depends="prepare" description="Find duplicate code using PHPCPD and log result in XML format">
+  <chmod file="${basedir}/build/tools/phpcpd.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpcpd.phar">
    <arg value="--log-pmd" />
    <arg path="${basedir}/build/logs/pmd-cpd.xml" />
@@ -147,6 +156,7 @@
  </target>
 
  <target name="phpunit" depends="prepare,composer" description="Run unit tests with PHPUnit">
+  <chmod file="${basedir}/build/tools/phpunit.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpunit.phar" failonerror="true">
    <arg value="--configuration"/>
    <arg path="${basedir}/build/phpunit.xml"/>
@@ -154,6 +164,7 @@
  </target>
 
  <target name="phpdox" depends="phploc-ci,phpcs-ci,phpmd-ci" description="Generate API documentation using phpDox">
+  <chmod file="${basedir}/build/tools/phpdox.phar" perm="ugo+x"/>
   <exec executable="${basedir}/build/tools/phpdox.phar" dir="${basedir}/build"/>
  </target>
 </project>
